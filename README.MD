@@ -6,12 +6,12 @@ Neste exemplo vamos usar a IDE PyCharm
 
 ## Instalação
 
-1 - pip install straemlit
-2 - pip install scikit-learn
-3 - pip install matplotlib
-4 - pip install numpy
-5 - pip install pandas
-6 - pip install sklearn
+* 1 - pip install straemlit
+* 2 - pip install scikit-learn
+* 3 - pip install matplotlib
+* 4 - pip install numpy
+* 5 - pip install pandas
+* 6 - pip install sklearn
 
 Para testar a instalação do streamlit você pode abrir no seu terminal o seguinte comando:
 streamlit hello
@@ -26,7 +26,9 @@ Exemplo: main.py
 Vomos importar o pacote do Streamlit
 import streamlit as st
 Vamos criar um título para o nosso projeto
+'''
 st.title("Análise de Datasets com Streamlit")
+'''
 
 Agora você pode executar o streamlit novamente para ver como está o resultado
 Para isso basta executar o arquivo .py no terminal:
