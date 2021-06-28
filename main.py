@@ -1,14 +1,14 @@
 # Importação de pacotes
 import streamlit as st
-from sklearn import datasets
 import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import datasets
 from sklearn.metrics import accuracy_score
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.decomposition import PCA
-import matplotlib.pyplot as plt
 
 # Criando um título para nosso projeto
 st.title("Análise de Datasets com Streamlit")
@@ -36,10 +36,12 @@ def get_dataset(dataset_name):
     return X, y
 
 X, y = get_dataset(dataset_name)
+# Mostrar o tamanho do dataset
 st.write("Tamanho do Dataset", X.shape)
+# Mostrar o número de classes do dataset
 st.write("Número de Classes", len(np.unique(y)))
 
-# Função para criar os parâmetros
+# Função para criar os parâmetros do classificador
 def add_paramter_ui(clf_name):
     params = dict()
     if clf_name == "KNN":
@@ -71,20 +73,29 @@ def get_classifier(clf_name, params):
 clf = get_classifier(classifier_name, params)
 
 #Classification
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state = 1234)
+# Vamos usar a função train_test_split para separar nosso dataset em treino e teste.
+# Aqui vamos usar 80% para treino e 20% para teste
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
+# Realizando o treinamento do Classificador
 clf.fit(X_train, y_train)
+# Gerando a predição no dataset de teste
 y_pred = clf.predict(X_test)
-
+# Verificando a acurácia
 acc = accuracy_score(y_test, y_pred)
+# Escrevendo na página o nome do classificador
 st.write(f"Classificador = {classifier_name}")
+# Escrevendo na página o resultado da acurácia
 st.write(f"Acurácia = {acc}")
 
-#Plot
+# PCA
+# Para que possamos criar um gráfico de dispersão(scatter plot), é necessário usar um algoritimo não supervisionado
+# chamado PCA (Principal Component Analysis), com isso iremos reduzir a dimensão do conjunto de dados:
 pca = PCA(2)
 X_projected = pca.fit_transform(X)
 x1 = X_projected[:, 0]
 x2 = X_projected[:, 1]
 
+# Plotagem
 fig = plt.figure()
 plt.scatter(x1, x2, c=y, alpha=0.8, cmap="viridis")
 plt.xlabel("Principal Component 1")
