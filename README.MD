@@ -9,12 +9,12 @@ Neste exemplo vamos usar a IDE PyCharm
 ## Instalação
 
 Você pode realizar a instação dos pacotes abaixo:
-* pip install straemlit
-* pip install scikit-learn
-* pip install matplotlib
-* pip install numpy
-* pip install pandas
-* pip install sklearn
+```
+pip install straemlit
+pip install scikit-learn
+pip install matplotlib
+pip install numpy
+```
 
 Ou simplesmente instalar todos eles a partir do arquivo requirements.txt
 
@@ -36,15 +36,23 @@ Volte ao terminar e clique em Ctrl + C para paralisar a atual instância do Stre
 
 Crie um arquivo com a extensão .py, exemplo: main.py
 
-Vomos importar o pacote do Streamlit
+Vomos importar os pacote necessários:
 ```
 import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import datasets
+from sklearn.metrics import accuracy_score
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.decomposition import PCA
 ```
 Vamos criar um título para o nosso projeto
 ```
 st.title("Análise de Datasets com Streamlit")
 ```
-
 Agora você pode executar o streamlit novamente para ver como está o resultado
 
 Para isso basta executar o arquivo .py no terminal:
